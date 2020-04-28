@@ -1,4 +1,5 @@
 class RegistrationsController < ApplicationController
+  
   def create
     user = User.create!(
       name: params['user']['name'],
@@ -16,4 +17,19 @@ class RegistrationsController < ApplicationController
     else
       render json: { status: 500 }
   end
+
+  def logged_in
+    if @current_user
+      render json: {
+        logged_in: true,
+        user: @current_user 
+      }
+  end
+end
+
+def logout
+   reset_session
+   render json: {status: 200, logged_out: true}
+end
+
 end

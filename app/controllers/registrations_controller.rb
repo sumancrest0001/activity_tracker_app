@@ -17,18 +17,4 @@ class RegistrationsController < ApplicationController
       render json: { status: 500 }
     end
   end
-
-  def logged_in
-    return unless @current_user
-
-    render json: {
-      logged_in: true,
-      user: @current_user
-    }
-  end
-
-  def logout
-    reset_session
-    render json: { status: 200, logged_out: true }
-  end
 end

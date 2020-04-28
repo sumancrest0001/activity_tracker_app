@@ -16,6 +16,7 @@ class RegistrationsController < ApplicationController
       }
     else
       render json: { status: 500 }
+    end
   end
 
   def logged_in
@@ -24,12 +25,12 @@ class RegistrationsController < ApplicationController
         logged_in: true,
         user: @current_user 
       }
+    end
   end
-end
 
-def logout
-   reset_session
-   render json: {status: 200, logged_out: true}
-end
+  def logout
+    reset_session
+    render json: {status: 200, logged_out: true}
+  end
 
 end

@@ -1,30 +1,4 @@
 class TasksController < ApplicationController
-  def create
-    if @current_user
-      mainactivity = @current_user.main_activities.create!(main_activity_params)
-      task = mainactivity.tasks.create!(task_params)
-      if mainactivity && task
-        render json: {
-          mainactivity: mainactivity,
-          task: task,
-          status: :created
-        }
-      else
-        render json: {
-          status: :bad_request,
-          message: 'Activity is not created',
-          mainactivity: mainactivity.errors
-        }
-      end
-    else
-      render json: {
-        status: :unprocessable_entity,
-        message: 'You are not logged In',
-        mainactivity: mainactivity.errors
-      }
-    end
-  end
-
   def index
     @mainactivity = MainActivity.find(params[:id])
     @task = @mainactivity.task
@@ -32,15 +6,5 @@ class TasksController < ApplicationController
       status: :ok,
       task: @task
     }
-  end
-
-  private
-
-  def main_activity_params
-    params.require(:data).permit(:title, :recorded)
-  end
-
-  def task_params
-    params.require(:data).permit(:sleep, :work, :cook, :exercise, :watch, :read)
   end
 end

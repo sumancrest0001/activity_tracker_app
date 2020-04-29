@@ -1,6 +1,7 @@
 class MainActivitiesController < ApplicationController
   def index
-    render json: { status: 'It is working without any error.' }
+    @mainactivity = @current_user.main_activities.all
+    render json: { status: 'It is working without any error.', data: @mainactivity }
   end
   def create
     if @current_user

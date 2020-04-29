@@ -1,0 +1,2 @@
+class MainActivitiesController < ApplicationController
+end

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sleep: 1
+  work: 1
+  exercise: 1
+  cook: 1
+  watch: 1
+  read: 1
+
+two:
+  sleep: 1
+  work: 1
+  exercise: 1
+  cook: 1
+  watch: 1
+  read: 1

@@ -1,6 +1,6 @@
 class MainActivitiesController < ApplicationController
   def index
-    @current_user = current_user = User.find(session[:user_id]) if session[:user_id]
+    @current_user = User.find(session[:user_id]) if session[:user_id]
     @mainactivity = @current_user.main_activities.all
     render json: { status: 'SUCCESS', data: @mainactivity }
   end

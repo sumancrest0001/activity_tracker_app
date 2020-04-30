@@ -10,10 +10,10 @@ class MainActivitiesController < ApplicationController
     if @current_user
       mainactivity = @current_user.main_activities.create!(main_activity_params)
       @task = mainactivity.create_task!(task_params)
-      if mainactivity && task
+      if mainactivity && @task
         render json: {
           mainactivity: mainactivity,
-          task: task,
+          task: @task,
           status: :created
         }
       else

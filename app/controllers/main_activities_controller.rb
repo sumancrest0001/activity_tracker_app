@@ -1,14 +1,15 @@
 class MainActivitiesController < ApplicationController
   def index
+    @current_user = current_user = User.find(session[:user_id]) if session[:user_id]
     @mainactivity = @current_user.main_activities.all
     render json: { status: 'SUCCESS', data: @mainactivity }
   end
 
   def create
-    current_user = User.find(session[:user_id]) if session[:user_id]
-    if current_user
-      mainactivity = current_user.main_activities.create!(main_activity_params)
-      task = mainactivity.task.create!(task_params)
+    @current_user = User.find(session[:user_id]) if session[:user_id]
+    if @current_user
+      mainactivity = @current_user.main_activities.create!(main_activity_params)
+      @task = mainactivity.create_task!(task_params)
       if mainactivity && task
         render json: {
           mainactivity: mainactivity,

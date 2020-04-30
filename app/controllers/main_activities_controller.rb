@@ -25,8 +25,8 @@ class MainActivitiesController < ApplicationController
     else
       render json: {
         status: :unprocessable_entity,
-        message: 'You are not logged In'
-
+        message: 'You are not logged In',
+        user: @current_user
       }
     end
   end

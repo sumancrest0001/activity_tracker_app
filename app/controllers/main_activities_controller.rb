@@ -5,8 +5,9 @@ class MainActivitiesController < ApplicationController
   end
 
   def create
-    if @current_user
-      mainactivity = @current_user.main_activities.create!(main_activity_params)
+    current_user = User.find(session[:user_id]) if session[:user_id]
+    if current_user
+      mainactivity = current_user.main_activities.create!(main_activity_params)
       task = mainactivity.task.create!(task_params)
       if mainactivity && task
         render json: {

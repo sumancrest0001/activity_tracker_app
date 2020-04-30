@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :MainActivities, dependent: :destroy
+  has_many :main_activities, dependent: :destroy
   before_save { self.email = email.downcase }
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false },

@@ -6,7 +6,7 @@ class MainActivitiesController < ApplicationController
   def create
     if @current_user
       mainactivity = @current_user.main_activities.create!(main_activity_params)
-      task = mainactivity.tasks.create!(task_params)
+      task = mainactivity.task.create!(task_params)
       if mainactivity && task
         render json: {
           mainactivity: mainactivity,
@@ -26,7 +26,7 @@ class MainActivitiesController < ApplicationController
         message: 'You are not logged In',
         
       }
-    end
+    endt
   end
 
   private

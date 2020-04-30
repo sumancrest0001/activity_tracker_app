@@ -1,7 +1,7 @@
 class MainActivitiesController < ApplicationController
   def index
     @mainactivity = @current_user.main_activities.all
-    render json: { status: 'It is working without any error.', data: @mainactivity }
+    render json: { status: 'SUCCESS', data: @mainactivity }
   end
   def create
     if @current_user
@@ -17,14 +17,14 @@ class MainActivitiesController < ApplicationController
         render json: {
           status: :bad_request,
           message: 'Activity is not created',
-          mainactivity: mainactivity.errors
+          
         }
       end
     else
       render json: {
         status: :unprocessable_entity,
         message: 'You are not logged In',
-        mainactivity: mainactivity.errors
+        
       }
     end
   end

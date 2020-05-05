@@ -1,7 +1,7 @@
 class MainActivitiesController < ApplicationController
   def index
     @current_user = User.find(session[:user_id]) if session[:user_id]
-    @mainactivities = @current_user.main_activities.where('recorded >= ?', 4.day.ago.to_date).order("recorded DESC")
+    @mainactivities = @current_user.main_activities.where('recorded >= ?', 4.day.ago.to_date).order('recorded DESC')
     ids = @mainactivity.pluck(:id)
     tasks = Task.where(main_activity_id: ids)
     render json: {

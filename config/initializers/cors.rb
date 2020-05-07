@@ -10,7 +10,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
   
   allow do
-    origins 'https://suman-activity-tracker.herokuapp.com/'
+    origins 'https://suman-activity-tracker.herokuapp.com'
 
     resource '*',
       headers: :any,

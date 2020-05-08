@@ -1,6 +1,6 @@
 class MainActivitiesController < ApplicationController
+  include CurrentUserConcern
   def index
-    @current_user = User.find(session[:user_id]) if session[:user_id]
     @mainactivities = @current_user.main_activities.where('recorded >= ?', 1.week.ago.to_date).order('recorded DESC')
     ids = @mainactivities.pluck(:id)
     tasks = Task.where(main_activity_id: ids)
@@ -14,7 +14,6 @@ class MainActivitiesController < ApplicationController
   end
 
   def create
-    @current_user = User.find(session[:user_id]) if session[:user_id]
     if @current_user
       mainactivity = @current_user.main_activities.create!(main_activity_params)
       @task = mainactivity.create_task!(task_params)
@@ -38,6 +37,25 @@ class MainActivitiesController < ApplicationController
         user: @current_user
       }
     end
+  end
+
+  def past_activities
+    dates = [
+      Date.today,
+      Date.today - 1.day,
+      Date.today - 1.week,
+      Date.today - 1.month
+    ]
+
+    main_activities = MainActivity.where('DATE(created_at) IN (?)', dates)
+    main_activities_ids = main_activities.pluck(:id)
+    tasks = Task.where(main_activity_id: main_activities_ids)
+
+    render json: {
+      status: 'success',
+      mainactivities: main_activities,
+      tasks: tasks
+    }
   end
 
   private

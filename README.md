@@ -1,5 +1,5 @@
 # Activity_tracker_API
-This is the final capstone project from the Microverse curriculum. This API is created for authentication and storing activities data from the forntend app.
+This is the final capstone project from the Microverse curriculum. This API is created for authentication and storing activities data from the frontend app.
 
 ## [Live Demo](https://my-activity-tracker.herokuapp.com/)
 
@@ -18,6 +18,9 @@ This is the final capstone project from the Microverse curriculum. This API is c
 
 - Install all the gems using 'bundle install'
 
+## Database initialization and running server
+- 'rails db:create' and 'rails db:migrate' to setup database
+- 'rails server' to run the api in your localhost
 - Enjoy the project and feel free to play with the code.
 
 ## Author

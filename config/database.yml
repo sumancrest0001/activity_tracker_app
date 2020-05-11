@@ -58,7 +58,7 @@ development:
 test:
   <<: *default
   database: activity_tracker_api_test
-  password: suman12345
+  password: <%= ENV['ACTIVITY_TRACKER_API_DATABASE_PASSWORD'] %>
   host: localhost
   port: 5432
 

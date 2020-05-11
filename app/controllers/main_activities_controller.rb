@@ -41,13 +41,9 @@ class MainActivitiesController < ApplicationController
 
   def past_activities
     dates = [
-      Date.today,
-      Date.today - 1.day,
-      Date.today - 1.week,
-      Date.today - 1.month
+      Date.today, 1.day.ago.to_date, 1.week.ago.to_date, 1.month.ago.to_date
     ]
-
-    main_activities = MainActivity.where('DATE(created_at) IN (?)', dates)
+    main_activities = @current_user.main_activities.where('DATE(created_at) IN (?)', dates)
     main_activities_ids = main_activities.pluck(:id)
     tasks = Task.where(main_activity_id: main_activities_ids)
 

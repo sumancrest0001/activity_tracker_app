@@ -9,9 +9,10 @@
 /config/local_env.yml
 # Ignore all logfiles and tempfiles.
 /log/*
-/tmp
-/test
-
+/tmp/*
+/test/*
+!/log/.keep
+!/tmp/.keep
 
 # Ignore uploaded files in development.
 /storage/*

@@ -7,13 +7,17 @@ RSpec.describe MainActivity, type: :model do
     @main_activity2 = MainActivity.create(title: 'This is an activity without a user', recorded: '2020-05-06')
   end
 
-  context 'task validation'
-  it 'should return true' do
-    expect(@main_activity).to be_valid
+  context 'mainActivity validation' do
+    it 'should return true' do
+      expect(@main_activity).to be_valid
+    end
+  end
+  it 'should check parent user' do
+    expect(@main_activity2).to_not be_valid
   end
 
-  context 'should check association between mainactivity and task'
-  it 'should check parent mainactivity' do
-    expect(@main_activity2).to_not be_valid
+  it 'should check presence of all the fields' do
+    @main_activity.title = nil
+    expect(@main_activity).to_not be_valid
   end
 end
